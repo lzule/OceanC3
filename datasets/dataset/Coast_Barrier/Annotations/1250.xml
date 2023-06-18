@@ -1,0 +1,26 @@
+<annotation>
+	<folder>20200829160701219_1.mp4_81</folder>
+	<filename>img92.jpg</filename>
+	<path>E:\dataset\C31\imgs_train\20200829160701219_1.mp4_81\img92.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>coast</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>37</xmin>
+			<ymin>335</ymin>
+			<xmax>992</xmax>
+			<ymax>428</ymax>
+		</bndbox>
+	</object>
+</annotation>

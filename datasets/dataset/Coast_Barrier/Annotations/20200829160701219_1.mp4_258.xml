@@ -1,0 +1,26 @@
+<annotation>
+	<folder>imgs_test</folder>
+	<filename>20200829160701219_1.mp4_258.jpg</filename>
+	<path>E:\dataset\C31\imgs_test\20200829160701219_1.mp4_258.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barrier</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>874</xmin>
+			<ymin>390</ymin>
+			<xmax>897</xmax>
+			<ymax>409</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>20200829160701219_1.mp4_267</folder>
+	<filename>img20.jpg</filename>
+	<path>E:\data-wy\20200829160701219_1.mp4_267\img20.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barrier</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>747</xmin>
+			<ymin>538</ymin>
+			<xmax>861</xmax>
+			<ymax>627</ymax>
+		</bndbox>
+	</object>
+</annotation>

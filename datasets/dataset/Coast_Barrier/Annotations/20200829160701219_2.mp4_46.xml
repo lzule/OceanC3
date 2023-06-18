@@ -1,0 +1,26 @@
+<annotation>
+	<folder>imgs_test</folder>
+	<filename>20200829160701219_2.mp4_46.jpg</filename>
+	<path>E:\dataset\C31\imgs_test\20200829160701219_2.mp4_46.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>coast</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1125</xmin>
+			<ymin>400</ymin>
+			<xmax>1920</xmax>
+			<ymax>502</ymax>
+		</bndbox>
+	</object>
+</annotation>

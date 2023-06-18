@@ -1,0 +1,26 @@
+<annotation>
+	<folder>20200829160701219_2.mp4_18</folder>
+	<filename>img54.jpg</filename>
+	<path>E:\data-wy\20200829160701219_2.mp4_18\img54.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>coast</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>934</xmin>
+			<ymin>370</ymin>
+			<xmax>1920</xmax>
+			<ymax>530</ymax>
+		</bndbox>
+	</object>
+</annotation>
