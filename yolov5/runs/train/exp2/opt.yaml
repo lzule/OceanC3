@@ -1,6 +1,6 @@
-weights: yolov5n.pt
-cfg: F:\2023OceanCompit\C3\code\yolov5\models\yolov5n.yaml
-data: F:\2023OceanCompit\C3\code\yolov5\data\C3.yaml
+weights: yolov5m.pt
+cfg: /home/lizl/OceanC3/OceanC3/yolov5/models/yolov5m.yaml
+data: /home/lizl/OceanC3/OceanC3/yolov5/data/C3.yaml
 hyp:
   lr0: 0.01
   lrf: 0.01
@@ -31,7 +31,7 @@ hyp:
   mixup: 0.0
   copy_paste: 0.0
 epochs: 100
-batch_size: 4
+batch_size: 16
 imgsz: 640
 rect: false
 resume: false
@@ -49,7 +49,7 @@ single_cls: false
 optimizer: SGD
 sync_bn: false
 workers: 8
-project: runs\train
+project: runs/train
 name: exp
 exist_ok: false
 quad: false
@@ -65,4 +65,4 @@ entity: null
 upload_dataset: false
 bbox_interval: -1
 artifact_alias: latest
-save_dir: runs\train\exp2
+save_dir: runs/train/exp2
