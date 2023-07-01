@@ -1,7 +1,7 @@
 # YOLOv5 🚀 by Ultralytics, AGPL-3.0 license
 """
 Run YOLOv5 detection inference on images, videos, directories, globs, YouTube, webcam, streams, etc.
-
+python detect.py --weights weights_from_train/exp2-m/weights/best.pt --source ../datasets/cocoC3/test/ --save-txt
 Usage - sources:
     $ python detect.py --weights yolov5s.pt --source 0                               # webcam
                                                      img.jpg                         # image
@@ -35,7 +35,7 @@ import sys
 from pathlib import Path
 
 import torch
-
+import csv
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
@@ -89,6 +89,11 @@ def run(
     if is_url and is_file:
         source = check_file(source)  # download
 
+    # get_csv
+    f = open('score.csv', 'w', encoding='utf8', newline='')
+    writer = csv.writer(f)
+    record_list = list()
+    writer.writerow([str('label'), str('img_id'), str('confidence'), str('xmin'), str('ymin'), str('xmax'), str('ymax')])
     # Directories
     save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
     (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
@@ -162,10 +167,13 @@ def run(
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file
-                        xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
-                        line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
-                        with open(f'{txt_path}.txt', 'a') as f:
-                            f.write(('%g ' * len(line)).rstrip() % line + '\n')
+                        # xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
+                        # line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
+                        # with open(f'{txt_path}.txt', 'a') as f:
+                        #     f.write(('%g ' * len(line)).rstrip() % line + '\n')
+                        if txt_path not in record_list:
+                            record_list.append(txt_path)
+                        writer.writerow((str(names[int(cls)]), str(txt_path.split('\\')[-1][:-4]), float(conf), float(xyxy[0]), float(xyxy[1]), float(xyxy[2]), float(xyxy[3])))
 
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
@@ -173,6 +181,11 @@ def run(
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+            else:
+                if txt_path not in record_list:
+                            record_list.append(txt_path)
+                writer.writerow((str(0), str(txt_path.split('\\')[-1][:-4]), float(0), float(0), float(0), float(0), float(0)))
+                
 
             # Stream results
             im0 = annotator.result()
@@ -207,6 +220,8 @@ def run(
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
     # Print results
+    f.close()
+    print(len(record_list))
     t = tuple(x.t / seen * 1E3 for x in dt)  # speeds per image
     LOGGER.info(f'Speed: %.1fms pre-process, %.1fms inference, %.1fms NMS per image at shape {(1, 3, *imgsz)}' % t)
     if save_txt or save_img:
@@ -221,7 +236,7 @@ def parse_opt():
     parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'yolov5s.pt', help='model path or triton URL')
     parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='file/dir/URL/glob/screen/0(webcam)')
     parser.add_argument('--data', type=str, default=ROOT / 'data/coco128.yaml', help='(optional) dataset.yaml path')
-    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='inference size h,w')
+    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=list, default=[640], help='inference size h,w')
     parser.add_argument('--conf-thres', type=float, default=0.25, help='confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.45, help='NMS IoU threshold')
     parser.add_argument('--max-det', type=int, default=1000, help='maximum detections per image')
